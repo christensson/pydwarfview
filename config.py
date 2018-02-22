@@ -2,7 +2,7 @@ import json
 import os
 import logging
 
-class Config:
+class Config(object):
     def __init__(self, config_file, default_config):
         self.config_file = config_file
         self.log = logging.getLogger('root')
@@ -18,7 +18,7 @@ class Config:
             setattr(self.__class__, prop, self._get_option_getter_func(prop))
             pass
         pass
-    
+
     def _read_config_file(self):
         cfg = None
         try:
@@ -43,7 +43,7 @@ class Config:
             pass
         except IOError as e:
             self.log.error('Error saving config file %s: %s',
-                           self.config_file, str(e)) 
+                           self.config_file, str(e))
             pass
         pass
 
@@ -61,11 +61,10 @@ class Config:
             return None
 
 class DwarfConfig(Config):
-    
+
     DEFAULT_CONFIG = {
       }
-    
-    def __init__(self, config_file):
-        super().__init__(config_file, self.DEFAULT_CONFIG)
-        pass
 
+    def __init__(self, config_file):
+        super(DwarfConfig, self).__init__(config_file, self.DEFAULT_CONFIG)
+        pass

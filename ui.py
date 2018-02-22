@@ -6,7 +6,7 @@ import collections
 import os
 import datetime
 
-class Ui:
+class Ui(object):
     (SYM_LIST_NAME,
      SYM_LIST_TYPE,
      SYM_LIST_SIZE,
@@ -37,7 +37,7 @@ class Ui:
         sym_tree.set_model(self.sym_store)
         sym_tree.set_search_column(self.SYM_LIST_NAME)
         sym_tree_renderer = Gtk.CellRendererText()
-        
+
         sym_tree_name_col = Gtk.TreeViewColumn(
                                                "Name", sym_tree_renderer, text=self.SYM_LIST_NAME)
         sym_tree_type_col = Gtk.TreeViewColumn(
@@ -48,7 +48,7 @@ class Ui:
         sym_tree_name_col.set_resizable(True)
         sym_tree_type_col.set_resizable(True)
         sym_tree_size_col.set_resizable(True)
-    
+
         sym_tree.append_column(sym_tree_name_col)
         sym_tree.append_column(sym_tree_type_col)
         sym_tree.append_column(sym_tree_size_col)
